@@ -22,10 +22,13 @@ void testApp::setup(){
     cameraPixels      = NULL;
     imagePicker       = new ofxiPhoneImagePicker();
     imagePicker->setMaxDimension(480);   //To avoid enormous images
+    
+    //photo.loadImage("images/pic.JPG");
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
+    
     if(imagePicker->imageUpdated){
 		
 		// the pixels seem to be flipped, so let's unflip them: 
@@ -39,12 +42,18 @@ void testApp::update(){
 			memcpy(cameraPixels+(imagePicker->height-i-1)*imagePicker->width*4, imagePicker->pixels+i*imagePicker->width*4, imagePicker->width*4);
 		}
 		
-		// finally, set the image from pixels...
+		// turn RGBA image into a an RGB ofImage... this way I'll be able to manipulate it.
+        unsigned char * newPixels = new unsigned char [imagePicker->width * imagePicker->height * 3];
+        int newIndex = 0;
+        for (int j=0; j < imagePicker->width * imagePicker->height * 4; j+=4) {
+            newPixels[newIndex] = cameraPixels[j];
+            newPixels[newIndex+1] = cameraPixels[j+1];
+            newPixels[newIndex+2] = cameraPixels[j+2];
+            newIndex +=3;
+        }
         
-		photo.setFromPixels(cameraPixels, imagePicker->width, imagePicker->height, OF_IMAGE_COLOR_ALPHA);
-        photo.setImageType(OF_IMAGE_COLOR);
-		imagePicker->imageUpdated=false;
-        
+		photo.setFromPixels(newPixels, imagePicker->width, imagePicker->height, OF_IMAGE_COLOR);
+        imagePicker->imageUpdated=false;
 	}
 }
 
@@ -104,6 +113,16 @@ void testApp::takePhoto(){
 }
 
 void testApp::savePhoto(){
-    printf("Saving Photo");
+    printf("Saving Photo not available now\n");
+}
+
+void testApp::invert(){
+    printf("Inverting pixels\n");
     
+    //-- iterate through the pixels and substract their value from 255, which gives me an inverted image
+    unsigned char * pixels = photo.getPixels();
+    for (int i=0; i<photo.width * photo.height * 3; i++) {
+        pixels[i] = 255 - pixels[i];
+    }
+    photo.setFromPixels(pixels, photo.width, photo.height, OF_IMAGE_COLOR);
 }

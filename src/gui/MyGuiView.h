@@ -10,6 +10,7 @@
 -(IBAction)loadPhoto:(id)sender;
 -(IBAction)savePhoto:(id)sender;
 
+-(IBAction)invert:(id)sender;
 -(IBAction)hide:(id)sender;
 
 @end

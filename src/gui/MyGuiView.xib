@@ -51,7 +51,7 @@
 						<object class="NSMutableArray" key="IBUIItems">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUIBarButtonItem" id="713828121">
-								<string key="IBUITitle">Camera</string>
+								<string key="IBUITitle">Cam</string>
 								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="101311732"/>
 							</object>
@@ -65,8 +65,13 @@
 								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="101311732"/>
 							</object>
+							<object class="IBUIBarButtonItem" id="97685492">
+								<string key="IBUITitle">Invert</string>
+								<int key="IBUIStyle">1</int>
+								<reference key="IBUIToolbar" ref="101311732"/>
+							</object>
 							<object class="IBUIBarButtonItem" id="527699552">
-								<float key="IBUIWidth">55</float>
+								<float key="IBUIWidth">12</float>
 								<reference key="IBUIToolbar" ref="101311732"/>
 								<int key="IBUISystemItemIdentifier">6</int>
 							</object>
@@ -133,6 +138,14 @@
 					</object>
 					<int key="connectionID">120</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">invert:</string>
+						<reference key="source" ref="97685492"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">124</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -173,6 +186,7 @@
 							<reference ref="989678846"/>
 							<reference ref="867767486"/>
 							<reference ref="527699552"/>
+							<reference ref="97685492"/>
 						</object>
 						<reference key="parent" ref="45263827"/>
 					</object>
@@ -201,6 +215,11 @@
 						<reference key="object" ref="527699552"/>
 						<reference key="parent" ref="101311732"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">121</int>
+						<reference key="object" ref="97685492"/>
+						<reference key="parent" ref="101311732"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -215,6 +234,7 @@
 					<string>114.IBPluginDependency</string>
 					<string>118.IBPluginDependency</string>
 					<string>119.IBPluginDependency</string>
+					<string>121.IBPluginDependency</string>
 					<string>56.IBEditorWindowLastContentRect</string>
 					<string>56.IBPluginDependency</string>
 				</object>
@@ -222,6 +242,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>MyGuiView</string>
 					<string>UIResponder</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -248,7 +269,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">120</int>
+			<int key="maxID">124</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -261,12 +282,14 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>hide:</string>
+							<string>invert:</string>
 							<string>loadPhoto:</string>
 							<string>savePhoto:</string>
 							<string>takePhoto:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -501,7 +524,7 @@
 			<integer value="3000" key="NS.object.0"/>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<string key="IBDocument.LastKnownRelativeProjectPath">../../iPhoneGuiExample.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../../ImageFun.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<string key="IBCocoaTouchPluginVersion">3.1</string>
 	</data>

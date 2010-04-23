@@ -27,13 +27,15 @@ public:
     void takePhoto();
     void savePhoto();
     
+    //-- Image Processing methods
+    void invert();
+    
     //Stores the image we are working on
     ofImage                photo;
     
     //Camera and Image Picker Vars
     unsigned char        * cameraPixels;       //for the camera flipping
     ofxiPhoneImagePicker * imagePicker;
-    
 };
 
 

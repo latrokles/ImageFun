@@ -7,3 +7,7 @@ build/*
 .DS_Store
 profile
 *.app
+
+
+# test images
+bin/data/images/*

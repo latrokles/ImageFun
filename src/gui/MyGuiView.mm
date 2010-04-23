@@ -21,6 +21,10 @@
     myApp->savePhoto();
 }
 
+
+-(IBAction)invert:(id)sender{
+    myApp->invert();
+}
 //----------------------------------------------------------------
 -(IBAction)hide:(id)sender{
 	self.view.hidden = YES;

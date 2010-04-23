@@ -37,6 +37,7 @@
 		BB24DE3D10DA785000E9C588 /* libGLU_arm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB24DE2810DA785000E9C588 /* libGLU_arm.a */; };
 		BB24E23510DAA8AD00E9C588 /* libofxiPhoneOFLib_iphoneos _Debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB24E23410DAA8A700E9C588 /* libofxiPhoneOFLib_iphoneos _Debug.a */; };
 		BBE5EAB80F49AD8400F28951 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */; };
+		CBC153A911812F0B002AEAFB /* images in Resources */ = {isa = PBXBuildFile; fileRef = CBC153A711812F0B002AEAFB /* images */; };
 		E46CF0FF1156C8CF00D1BAA5 /* MyGuiView.mm in Sources */ = {isa = PBXBuildFile; fileRef = E46CF0FD1156C8CF00D1BAA5 /* MyGuiView.mm */; };
 		E46CF1001156C8CF00D1BAA5 /* MyGuiView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46CF0FE1156C8CF00D1BAA5 /* MyGuiView.xib */; };
 		E4D8933311527A44007E1F53 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = E4D8933011527A44007E1F53 /* main.mm */; };
@@ -141,6 +142,7 @@
 		BB24DE2810DA785000E9C588 /* libGLU_arm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGLU_arm.a; sourceTree = "<group>"; };
 		BB24E22F10DAA8A700E9C588 /* iPhone+OF Lib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "iPhone+OF Lib.xcodeproj"; path = "../../../libs/openFrameworksCompiled/project/iphone/iPhone+OF Lib.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		CBC153A711812F0B002AEAFB /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = images; path = bin/data/images; sourceTree = SOURCE_ROOT; };
 		DA7851271105C039007EFC90 /* glu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glu.h; sourceTree = "<group>"; };
 		DA7851281105C039007EFC90 /* gluos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gluos.h; sourceTree = "<group>"; };
 		E46CF0FC1156C8CF00D1BAA5 /* MyGuiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyGuiView.h; path = src/gui/MyGuiView.h; sourceTree = SOURCE_ROOT; };
@@ -316,6 +318,7 @@
 		BB24DD8B10DA77E000E9C588 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				CBC153A711812F0B002AEAFB /* images */,
 				BB24DD8C10DA77E000E9C588 /* Default.png */,
 				BB24DD8D10DA77E000E9C588 /* Icon.png */,
 			);
@@ -621,6 +624,7 @@
 				051039BC115D65A4004FA8F8 /* LICENSE.txt in Resources */,
 				051039BD115D65A4004FA8F8 /* changelog.txt in Resources */,
 				051039BE115D65A4004FA8F8 /* install.xml in Resources */,
+				CBC153A911812F0B002AEAFB /* images in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
