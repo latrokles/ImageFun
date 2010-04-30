@@ -1,0 +1,23 @@
+README
+------
+
+ImageFun is a simple app to play around with images on the 
+iPhone. It has some functions to do image processing on
+pictures obtained from the iphone camera or photo album.
+
+You can do image inversion and some edge detection (with a 
+fixed threshold at the moment). More image processing 
+functions and effects will be added in the coming weeks
+(embossing, glares, etc.) as time permits.
+
+
+The project is being built using openFrameworks for iPhone,
+if you want to play around with the code, you will need 
+openFrameworks for iPhone version 0061 which is available
+at:
+
+http://www.openframeworks.cc/download
+
+Many thanks to Memo, Zach Gage for oF for iPhone as well as
+Zach, Theo, Arturo and the rest of the openFrameworks team.
+
