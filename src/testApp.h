@@ -28,6 +28,7 @@ public:
     void savePhoto();
     
     //-- Image Processing methods
+    void edgeDetection();
     void invert();
     
     //Stores the image we are working on
@@ -36,6 +37,10 @@ public:
     //Camera and Image Picker Vars
     unsigned char        * cameraPixels;       //for the camera flipping
     ofxiPhoneImagePicker * imagePicker;
+    
+    //keep a copy of original image
+    unsigned char        * oldPixels;
+    bool                   canRestore;
 };
 
 

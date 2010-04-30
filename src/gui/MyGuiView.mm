@@ -17,10 +17,9 @@
     myApp->loadPhoto();
 }
 
--(IBAction)savePhoto:(id)sender{
-    myApp->savePhoto();
+-(IBAction)edgeDetection:(id)sender{
+    myApp->edgeDetection();
 }
-
 
 -(IBAction)invert:(id)sender{
     myApp->invert();

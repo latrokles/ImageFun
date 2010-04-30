@@ -8,8 +8,8 @@
 
 -(IBAction)takePhoto:(id)sender;
 -(IBAction)loadPhoto:(id)sender;
--(IBAction)savePhoto:(id)sender;
 
+-(IBAction)edgeDetection:(id)sender;
 -(IBAction)invert:(id)sender;
 -(IBAction)hide:(id)sender;
 
