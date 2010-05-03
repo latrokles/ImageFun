@@ -17,6 +17,17 @@
     myApp->loadPhoto();
 }
 
+-(IBAction)savePhoto:(id)sender{
+    myApp->savePhoto();
+}
+
+-(IBAction)updateThreshold:(id)sender{
+    UISlider * thresholdSlider = (UISlider*)sender;
+    int threshold = [thresholdSlider value];
+    myApp->setThreshold(threshold);
+    myApp->edgeDetection();
+}
+
 -(IBAction)edgeDetection:(id)sender{
     myApp->edgeDetection();
 }

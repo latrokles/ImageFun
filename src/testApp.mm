@@ -26,6 +26,9 @@ void testApp::setup(){
     //photo.loadImage("images/pic.JPG");
     
     canRestore = false;
+    
+    //set distance
+    distance = 20;
 }
 
 //--------------------------------------------------------------
@@ -65,7 +68,19 @@ void testApp::update(){
 
 //--------------------------------------------------------------
 void testApp::draw(){
-	photo.draw(0, 0);
+	
+    if (photo.getWidth() > photo.getHeight()) {
+        //flip lansdcape image to display properly
+        ofPushMatrix();
+        ofTranslate(ofGetWidth(), 0, 0);
+        ofRotateZ(90);
+        photo.draw(0, 0);
+        ofPopMatrix();
+    }
+    else {
+        // draw protrait
+        photo.draw(0, 0);
+    }
     
     ofSetColor(0, 0, 255);
     ofFill();
@@ -97,7 +112,7 @@ void testApp::touchUp(ofTouchEventArgs &touch){
 //--------------------------------------------------------------
 void testApp::touchDoubleTap(ofTouchEventArgs &touch){
     if (canRestore) {
-        photo.setFromPixels(oldPixels, photo.width, photo.height, OF_IMAGE_COLOR);
+        restoreImg();
     }
 }
 
@@ -130,15 +145,25 @@ void testApp::takePhoto(){
 
 void testApp::savePhoto(){
     printf("Saving Photo not available now\n");
+    ofxiPhoneAppDelegate * delegate = ofxiPhoneGetAppDelegate();
+    ofxiPhoneScreenGrab(delegate);
+}
+
+void testApp::restoreImg(){
+    photo.setFromPixels(oldPixels, photo.width, photo.height, OF_IMAGE_COLOR);
+}
+
+void testApp::setThreshold(int value){
+    distance = value;
 }
 
 void testApp::edgeDetection(){
+    restoreImg();
     int w = photo.getWidth();
     int h = photo.getHeight();
     
     unsigned char * edgePixels = photo.getPixels();
     canRestore = true;
-    int distance = 20;
     
     int r, g, b;
     int r1, g1, b1;

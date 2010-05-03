@@ -28,6 +28,8 @@ public:
     void savePhoto();
     
     //-- Image Processing methods
+    void restoreImg();
+    void setThreshold(int value);
     void edgeDetection();
     void invert();
     
@@ -41,6 +43,7 @@ public:
     //keep a copy of original image
     unsigned char        * oldPixels;
     bool                   canRestore;
+    int                    distance;
 };
 
 
