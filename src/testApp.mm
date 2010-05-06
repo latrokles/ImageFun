@@ -28,7 +28,13 @@ void testApp::setup(){
     canRestore = false;
     
     //set distance
-    distance = 20;
+    distance = 20.0;
+    
+    //setting the fill and edge color
+    fillColor.r = fillColor.g = fillColor.b = 0;    //black
+    edgeColor.r = edgeColor.g = edgeColor.b = 255;  //white
+    
+    edgeDetected = false;
 }
 
 //--------------------------------------------------------------
@@ -81,12 +87,6 @@ void testApp::draw(){
         // draw protrait
         photo.draw(0, 0);
     }
-    
-    ofSetColor(0, 0, 255);
-    ofFill();
-    ofTriangle(ofGetWidth(), ofGetHeight(), ofGetWidth(), ofGetHeight() - 30, ofGetWidth() - 30, ofGetHeight());
-    ofNoFill();
-    ofSetColor(255, 255, 255);
 }
 
 //--------------------------------------------------------------
@@ -144,27 +144,28 @@ void testApp::takePhoto(){
 }
 
 void testApp::savePhoto(){
-    printf("Saving Photo not available now\n");
     ofxiPhoneAppDelegate * delegate = ofxiPhoneGetAppDelegate();
     ofxiPhoneScreenGrab(delegate);
 }
 
 void testApp::restoreImg(){
     photo.setFromPixels(oldPixels, photo.width, photo.height, OF_IMAGE_COLOR);
+    edgeDetected = false;
 }
 
 void testApp::setThreshold(int value){
     distance = value;
+    if (edgeDetected) {
+        restoreImg();
+        edgeDetection();
+    }
 }
 
 void testApp::edgeDetection(){
-    restoreImg();
     int w = photo.getWidth();
     int h = photo.getHeight();
     
     unsigned char * edgePixels = photo.getPixels();
-    canRestore = true;
-    
     int r, g, b;
     int r1, g1, b1;
     int r2, g2, b2;
@@ -190,20 +191,21 @@ void testApp::edgeDetection(){
                (sqrt((r-r2)*(r-r2) + (g-g2)*(g-g2) + (b-b2)*(b-b2)) >= distance))
             {
                 //Draw the edge
-                edgePixels[(j*w+i)*3 + 0] = 255;
-                edgePixels[(j*w+i)*3 + 1] = 255;
-                edgePixels[(j*w+i)*3 + 2] = 255;
+                edgePixels[(j*w+i)*3 + 0] = edgeColor.r;
+                edgePixels[(j*w+i)*3 + 1] = edgeColor.g;
+                edgePixels[(j*w+i)*3 + 2] = edgeColor.b;
             }
             else
             {
                 //Draw fill
-                edgePixels[(j*w+i)*3 + 0] = 0;
-                edgePixels[(j*w+i)*3 + 1] = 0;
-                edgePixels[(j*w+i)*3 + 2] = 0;
+                edgePixels[(j*w+i)*3 + 0] = fillColor.r;
+                edgePixels[(j*w+i)*3 + 1] = fillColor.g;
+                edgePixels[(j*w+i)*3 + 2] = fillColor.b;
             }
         }
     }
     photo.setFromPixels(edgePixels, w, h, OF_IMAGE_COLOR);
+    edgeDetected = true;
 }
 
 void testApp::invert(){
@@ -215,4 +217,18 @@ void testApp::invert(){
         pixels[i] = 255 - pixels[i];
     }
     photo.setFromPixels(pixels, photo.width, photo.height, OF_IMAGE_COLOR);
+    
+    //flip edge and fill colors
+    ofColor tmpColor;
+    tmpColor.r = fillColor.r;
+    tmpColor.g = fillColor.g;
+    tmpColor.b = fillColor.b;
+    
+    fillColor.r = edgeColor.r;
+    fillColor.g = edgeColor.g;
+    fillColor.b = edgeColor.b;
+    
+    edgeColor.r = tmpColor.r;
+    edgeColor.g = tmpColor.g;
+    edgeColor.b = tmpColor.b;
 }

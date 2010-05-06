@@ -43,7 +43,14 @@ public:
     //keep a copy of original image
     unsigned char        * oldPixels;
     bool                   canRestore;
-    int                    distance;
+    float                  distance;
+    
+    //colors for edgedetection
+    ofColor             fillColor;
+    ofColor             edgeColor;
+    
+    //boolean to track if edge detection happened
+    bool                edgeDetected;
 };
 
 
