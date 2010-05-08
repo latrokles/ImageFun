@@ -19,8 +19,8 @@ void testApp::setup(){
 	ofBackground(0,0,0);
     
     //Initializing stuff for Image Picker
-    cameraPixels      = NULL;
-    imagePicker       = new ofxiPhoneImagePicker();
+    cameraPixels = NULL;
+    imagePicker  = new ofxiPhoneImagePicker();
     imagePicker->setMaxDimension(480);   //To avoid enormous images
     
     //photo.loadImage("images/pic.JPG");
@@ -35,6 +35,8 @@ void testApp::setup(){
     edgeColor.r = edgeColor.g = edgeColor.b = 255;  //white
     
     edgeDetected = false;
+    doPontilize  = false;
+    pontilized   = false;
 }
 
 //--------------------------------------------------------------
@@ -80,12 +82,22 @@ void testApp::draw(){
         ofPushMatrix();
         ofTranslate(ofGetWidth(), 0, 0);
         ofRotateZ(90);
-        photo.draw(0, 0);
+        if (doPontilize) {
+            pontilize();
+        }
+        else {
+            photo.draw(0, 0);
+        }
         ofPopMatrix();
     }
     else {
         // draw protrait
-        photo.draw(0, 0);
+        if (doPontilize) {
+            pontilize();
+        }
+        else {
+            photo.draw(0, 0);            
+        }
     }
 }
 
@@ -111,9 +123,6 @@ void testApp::touchUp(ofTouchEventArgs &touch){
 
 //--------------------------------------------------------------
 void testApp::touchDoubleTap(ofTouchEventArgs &touch){
-    if (canRestore) {
-        restoreImg();
-    }
 }
 
 void testApp::lostFocus(){
@@ -149,8 +158,11 @@ void testApp::savePhoto(){
 }
 
 void testApp::restoreImg(){
-    photo.setFromPixels(oldPixels, photo.width, photo.height, OF_IMAGE_COLOR);
-    edgeDetected = false;
+    if (canRestore) {
+        photo.setFromPixels(oldPixels, photo.width, photo.height, OF_IMAGE_COLOR);
+        edgeDetected = false;
+        doPontilize = false;
+    }
 }
 
 void testApp::setThreshold(int value){
@@ -231,4 +243,35 @@ void testApp::invert(){
     edgeColor.r = tmpColor.r;
     edgeColor.g = tmpColor.g;
     edgeColor.b = tmpColor.b;
+}
+
+void testApp::sharpen(){
+    
+}
+
+void testApp::blur(){
+    
+}
+
+void testApp::setPontilize(){
+    doPontilize = true;
+}
+
+void testApp::pontilize(){
+    int w = photo.getWidth();
+    int h = photo.getHeight();
+    int numberOfPixels = w * h;
+    unsigned char * pixels = photo.getPixels();
+    for (int i = 0; i < numberOfPixels; i+=10) {
+        int x = (int)ofRandom(0, w);
+        int y = (int)ofRandom(0, h);
+        
+        int red   = pixels[((y*w)+x)*3];
+        int green = pixels[((y*w)+x)*3+1];
+        int blue  = pixels[((y*w)+x)*3+2];
+        
+        ofSetColor(red, green, blue, 100);
+        ofCircle(x, y, 8);
+    }
+    ofSetColor(255, 255, 255);
 }

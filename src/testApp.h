@@ -32,6 +32,10 @@ public:
     void setThreshold(int value);
     void edgeDetection();
     void invert();
+    void sharpen();
+    void blur();
+    void setPontilize();
+    void pontilize();
     
     //Stores the image we are working on
     ofImage                photo;
@@ -51,6 +55,9 @@ public:
     
     //boolean to track if edge detection happened
     bool                edgeDetected;
+    bool                doPontilize;
+    bool                pontilized;
+    
 };
 
 

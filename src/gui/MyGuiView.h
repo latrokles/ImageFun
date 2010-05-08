@@ -12,7 +12,10 @@
 
 -(IBAction)updateThreshold:(id)sender;
 -(IBAction)edgeDetection:(id)sender;
+-(IBAction)sharpen:(id)sender;
+-(IBAction)pontilize:(id)sender;
 -(IBAction)invert:(id)sender;
+-(IBAction)cancel:(id)sender;
 -(IBAction)hide:(id)sender;
 
 @end

@@ -34,6 +34,24 @@
 -(IBAction)invert:(id)sender{
     myApp->invert();
 }
+
+-(IBAction)pontilize:(id)sender{
+    myApp->setPontilize();
+}
+
+-(IBAction)sharpen:(id)sender{
+    myApp->sharpen();
+}
+
+-(IBAction)blur:(id)sender{
+    myApp->blur();
+}
+
+-(IBAction)cancel:(id)sender{
+    myApp->restoreImg();
+    [self hide:sender ];
+}
+
 //----------------------------------------------------------------
 -(IBAction)hide:(id)sender{
 	self.view.hidden = YES;
