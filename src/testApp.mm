@@ -25,18 +25,18 @@ void testApp::setup(){
     
     //photo.loadImage("images/pic.JPG");
     
-    canRestore = false;
-    
-    //set distance
-    distance = 20.0;
+    // set initial values for image processing parameters
+    distance  = 20.0;        // edge detection distance
+    pointSize = 8;           // pontilism point size
     
     //setting the fill and edge color
     fillColor.r = fillColor.g = fillColor.b = 0;    //black
     edgeColor.r = edgeColor.g = edgeColor.b = 255;  //white
     
+    // setting control values 
     edgeDetected = false;
     doPontilize  = false;
-    pontilized   = false;
+    canRestore   = false;    
 }
 
 //--------------------------------------------------------------
@@ -71,6 +71,7 @@ void testApp::update(){
         memcpy(oldPixels, newPixels, photo.width * photo.height * 3 * sizeof(char));
         canRestore = true;
         imagePicker->imageUpdated=false;
+        doPontilize = false;
 	}
 }
 
@@ -83,7 +84,7 @@ void testApp::draw(){
         ofTranslate(ofGetWidth(), 0, 0);
         ofRotateZ(90);
         if (doPontilize) {
-            pontilize();
+            drawPontilizedImg();
         }
         else {
             photo.draw(0, 0);
@@ -93,7 +94,7 @@ void testApp::draw(){
     else {
         // draw protrait
         if (doPontilize) {
-            pontilize();
+            drawPontilizedImg();
         }
         else {
             photo.draw(0, 0);            
@@ -114,7 +115,6 @@ void testApp::touchDown(ofTouchEventArgs &touch){
 
 //--------------------------------------------------------------
 void testApp::touchMoved(ofTouchEventArgs &touch){
-
 }
 
 //--------------------------------------------------------------
@@ -178,27 +178,33 @@ void testApp::edgeDetection(){
     int h = photo.getHeight();
     
     unsigned char * edgePixels = photo.getPixels();
+    
+    // colors for the pixels to be compared
     int r, g, b;
     int r1, g1, b1;
     int r2, g2, b2;
     
-    
+    // iterate through pixels in the image
     for(int i = 0; i < w; i++)
     {
         for(int j = 0; j < h; j++)
         {
+            // get values for pixel
             r = edgePixels[(j*w+i)*3 + 0];
             g = edgePixels[(j*w+i)*3 + 1];
             b = edgePixels[(j*w+i)*3 + 2];
             
+            // get values for pixel to the right
             r1 = edgePixels[(j*w+(i+1))*3 + 0];
             g1 = edgePixels[(j*w+(i+1))*3 + 1];
             b1 = edgePixels[(j*w+(i+1))*3 + 2];
             
+            // get values for pixel below
             r2 = edgePixels[((j+1)*w+i)*3 + 0];
             g2 = edgePixels[((j+1)*w+i)*3 + 1];
             b2 = edgePixels[((j+1)*w+i)*3 + 2];
             
+            // compare the euclidean distance between pixel selected and its right and down neighbors against a threshold distance
             if((sqrt((r-r1)*(r-r1) + (g-g1)*(g-g1) + (b-b1)*(b-b1)) >= distance) || 
                (sqrt((r-r2)*(r-r2) + (g-g2)*(g-g2) + (b-b2)*(b-b2)) >= distance))
             {
@@ -216,6 +222,7 @@ void testApp::edgeDetection(){
             }
         }
     }
+    // set the image back from the modified pixels
     photo.setFromPixels(edgePixels, w, h, OF_IMAGE_COLOR);
     edgeDetected = true;
 }
@@ -253,15 +260,14 @@ void testApp::blur(){
     
 }
 
-void testApp::setPontilize(){
-    doPontilize = true;
-}
-
 void testApp::pontilize(){
     int w = photo.getWidth();
     int h = photo.getHeight();
     int numberOfPixels = w * h;
     unsigned char * pixels = photo.getPixels();
+    
+    // for every pixel in the image randomly select a pixel and create a point
+    // with its color
     for (int i = 0; i < numberOfPixels; i+=10) {
         int x = (int)ofRandom(0, w);
         int y = (int)ofRandom(0, h);
@@ -270,8 +276,15 @@ void testApp::pontilize(){
         int green = pixels[((y*w)+x)*3+1];
         int blue  = pixels[((y*w)+x)*3+2];
         
-        ofSetColor(red, green, blue, 100);
-        ofCircle(x, y, 8);
+        pontilizeDot tmp;
+        tmp.init(x, y, red, green, blue, pointSize);
+        points.push_back(tmp);
     }
-    ofSetColor(255, 255, 255);
+    doPontilize = true;
+}
+
+void testApp::drawPontilizedImg(){
+    for (int i=0; i < points.size(); i++) {
+        points[i].draw();
+    }
 }

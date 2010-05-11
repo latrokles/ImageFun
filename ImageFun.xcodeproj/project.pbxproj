@@ -38,6 +38,7 @@
 		BB24E23510DAA8AD00E9C588 /* libofxiPhoneOFLib_iphoneos _Debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB24E23410DAA8A700E9C588 /* libofxiPhoneOFLib_iphoneos _Debug.a */; };
 		BBE5EAB80F49AD8400F28951 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */; };
 		CBC153A911812F0B002AEAFB /* images in Resources */ = {isa = PBXBuildFile; fileRef = CBC153A711812F0B002AEAFB /* images */; };
+		CBD41B1F1198CA390064E9E9 /* pontilizeDot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CBD41B1E1198CA390064E9E9 /* pontilizeDot.cpp */; };
 		E46CF0FF1156C8CF00D1BAA5 /* MyGuiView.mm in Sources */ = {isa = PBXBuildFile; fileRef = E46CF0FD1156C8CF00D1BAA5 /* MyGuiView.mm */; };
 		E46CF1001156C8CF00D1BAA5 /* MyGuiView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46CF0FE1156C8CF00D1BAA5 /* MyGuiView.xib */; };
 		E4D8933311527A44007E1F53 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = E4D8933011527A44007E1F53 /* main.mm */; };
@@ -143,6 +144,8 @@
 		BB24E22F10DAA8A700E9C588 /* iPhone+OF Lib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "iPhone+OF Lib.xcodeproj"; path = "../../../libs/openFrameworksCompiled/project/iphone/iPhone+OF Lib.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		BBE5EAB70F49AD8400F28951 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CBC153A711812F0B002AEAFB /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = images; path = bin/data/images; sourceTree = SOURCE_ROOT; };
+		CBD41B1D1198CA390064E9E9 /* pontilizeDot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pontilizeDot.h; sourceTree = "<group>"; };
+		CBD41B1E1198CA390064E9E9 /* pontilizeDot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pontilizeDot.cpp; sourceTree = "<group>"; };
 		DA7851271105C039007EFC90 /* glu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glu.h; sourceTree = "<group>"; };
 		DA7851281105C039007EFC90 /* gluos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gluos.h; sourceTree = "<group>"; };
 		E46CF0FC1156C8CF00D1BAA5 /* MyGuiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyGuiView.h; path = src/gui/MyGuiView.h; sourceTree = SOURCE_ROOT; };
@@ -552,6 +555,8 @@
 				E4D8933011527A44007E1F53 /* main.mm */,
 				E4D8933211527A44007E1F53 /* testApp.mm */,
 				E4D8933111527A44007E1F53 /* testApp.h */,
+				CBD41B1D1198CA390064E9E9 /* pontilizeDot.h */,
+				CBD41B1E1198CA390064E9E9 /* pontilizeDot.cpp */,
 				E46CF0FB1156C8CF00D1BAA5 /* gui */,
 			);
 			path = src;
@@ -655,6 +660,7 @@
 				E4D8933411527A44007E1F53 /* testApp.mm in Sources */,
 				E46CF0FF1156C8CF00D1BAA5 /* MyGuiView.mm in Sources */,
 				051039BF115D65A4004FA8F8 /* ofxMultiTouch.cpp in Sources */,
+				CBD41B1F1198CA390064E9E9 /* pontilizeDot.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

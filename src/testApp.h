@@ -4,6 +4,7 @@
 #include "ofxiPhone.h"
 #include "ofxiPhoneExtras.h"
 #include "ofxiPhoneImagePicker.h"
+#include "pontilizeDot.h"
 
 class testApp : public ofxiPhoneApp {
 	
@@ -36,27 +37,31 @@ public:
     void blur();
     void setPontilize();
     void pontilize();
+    void drawPontilizedImg();
     
-    //Stores the image we are working on
+    // Stores the image we are working on
     ofImage                photo;
     
-    //Camera and Image Picker Vars
+    // Camera and Image Picker Vars
     unsigned char        * cameraPixels;       //for the camera flipping
     ofxiPhoneImagePicker * imagePicker;
     
-    //keep a copy of original image
+    // keep a copy of original image
     unsigned char        * oldPixels;
     bool                   canRestore;
     float                  distance;
     
-    //colors for edgedetection
+    // colors for edgedetection
     ofColor             fillColor;
     ofColor             edgeColor;
     
-    //boolean to track if edge detection happened
+    // boolean to track if edge detection happened
     bool                edgeDetected;
-    bool                doPontilize;
-    bool                pontilized;
+    
+    // for pontilize effect
+    vector<pontilizeDot> points;
+    int                  pointSize;
+    bool                 doPontilize;
     
 };
 

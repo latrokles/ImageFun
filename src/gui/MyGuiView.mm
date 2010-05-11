@@ -36,7 +36,7 @@
 }
 
 -(IBAction)pontilize:(id)sender{
-    myApp->setPontilize();
+    myApp->pontilize();
 }
 
 -(IBAction)sharpen:(id)sender{
@@ -49,7 +49,6 @@
 
 -(IBAction)cancel:(id)sender{
     myApp->restoreImg();
-    [self hide:sender ];
 }
 
 //----------------------------------------------------------------
